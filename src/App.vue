@@ -238,7 +238,7 @@ export default {
     color: #f5f5f5;
   }
 
-  .location:hover {
+  .location:hover, .episode:hover {
     color: rgb(255, 152, 0);
   }
 
