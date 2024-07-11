@@ -105,6 +105,7 @@ export default {
     align-items: center;
     width: 100%;
     height: 50px;
+    padding-top: 70px;
   }
 
   .search input {

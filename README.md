@@ -1,5 +1,7 @@
 # Task The Rick and Morty API
 
+## Проект находится по адресу: [rickandmortytask.netlify] (https://rickandmortytask.netlify.app/)
+
 ## Задача
 ```
 Создать страницу, на которой можно будет просматривать персонажей из Рика и Морти с помощью открытого api
