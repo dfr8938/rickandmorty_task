@@ -1,5 +1,22 @@
-# Vue 3 + Vite
+# Task The Rick and Morty API
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Задача
+```
+Создать страницу, на которой можно будет просматривать персонажей из Рика и Морти с помощью открытого api
+Формальные требования к выполнению задачи
+• Использовать vue3 или vue2, composition api
+• Персонажей выводить в виде карточек, как в источнике. Ссылки на карточке заменить на обычный текст
+• Реализовать пагинацию с помощью api
+• Реализовать фильтрацию по полям "name" и "status" с помощью api. Фильтрация должна применяться по
+нажатию на кнопку "Применить"
+• Для элементов пагинации и фильтрации можно использовать обычные html теги (input, select) без
+стилизации
+• Код разместить в репозитории github
+• Готовое приложение разместить на github pages или аналогичном сервисе
+```
+## Источник данных
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+```
+• Сайт https://rickandmortyapi.com/
+• Документация размещена на сайте
+```
