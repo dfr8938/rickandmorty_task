@@ -1,15 +1,19 @@
 <template>
   <div class="search">
-    <label>Поиск по имени:
     <input
         v-model="searchQuery"
         type="text"
-        placeholder="введите текст поиска"/>
-    <button @click="pastArrayList">Найти</button>
-    </label>
+        placeholder="Введите имя персонажа"/>
+    <select class="select_status" v-model="selected">
+      <option disabled value="">Выберите статус</option>
+      <option>Alive</option>
+      <option>Dead</option>
+      <option>Unknown</option>
+    </select>
+    <button @click="pastArrayList">Применить</button>
   </div>
   <div :class="nextList.length === 0 ? 'nonresults' : 'results'">
-    <h4>Найдено совпадений:</h4> {{nextList.length}}
+    <h4>Найдено совпадений:</h4> {{countCharacter}}
   </div>
   <div class="box">
     <div class="app">
@@ -58,22 +62,22 @@
 
 <script>
 import axios from "axios";
+import {ref} from "vue";
 
 export default {
   data() {
     return {
-      list: [],
+      list:[],
       pastList: [],
       nextList: [],
       searchArray: [],
-      page: 1,
-      countCharacter: 0,
-      countPages: 0,
-      searchQuery: "",
+      page: ref(1),
+      countCharacter: ref(0),
+      countPages: ref(0),
+      searchQuery: ref(""),
+      selected: ref(""),
+      notfound: ref(""),
     }
-  },
-  beforeMount() {
-
   },
   mounted() {
     this.fetchCards();
@@ -90,14 +94,20 @@ export default {
     },
     async pastArrayList() {
       try {
-        await axios.get(`https://rickandmortyapi.com/api/character/?page=${this.page}&name=${this.searchQuery}&status=alive`)
+        this.nextList = [];
+        if (this.selected === "") {
+          this.selected = "Alive";
+        }
+        await axios.get(`https://rickandmortyapi.com/api/character/?page=${this.page}&name=${this.searchQuery}&status=${this.selected}`)
             .then(res => this.pastList = res.data.info);
-        await axios.get(`https://rickandmortyapi.com/api/character/?page=${this.page}&name=${this.searchQuery}&status=alive`)
+        await axios.get(`https://rickandmortyapi.com/api/character/?page=${this.page}&name=${this.searchQuery}&status=${this.selected}`)
             .then(res => this.nextList = res.data.results);
         this.countPages = this.pastList.pages;
         this.countCharacter = this.pastList.count;
       } catch (e) {
-        console.error(e.message);
+          if (e.response && e.response.status === 404) {
+            console.warn("404");
+          }
       }
     },
     async pageCount() {
@@ -168,11 +178,21 @@ export default {
 
   .search input {
     text-indent: 10px;
-    width: 30%;
+    width: 170px;
     height: 30px;
     border: none;
     border-radius: 10px 0 0 10px;
     outline: none;
+  }
+
+  .select_status {
+    width: 130px;
+    height: 30px;
+    border: none;
+    outline: none;
+    color: #302e2c;
+    border-left: 1px solid #eeeeee;
+    background-color: #ffffff;
   }
 
   .search button {
