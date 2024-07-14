@@ -1,6 +1,6 @@
 # Task The Rick and Morty API
 
-## Проект находится по адресу: [rickandmortytask.netlify] (https://rickandmortytask.netlify.app/)
+## Проект находится по адресу: https://rickandmortytask.netlify.app/
 
 ## Задача
 ```
